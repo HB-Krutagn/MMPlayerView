@@ -444,6 +444,8 @@ extension MMPlayerLayer {
         self.startLoading(isStart: true)
         if let cacheItem = self.cahce.getItem(key: current.url) , cacheItem.status == .readyToPlay {
             self.player?.replaceCurrentItem(with: cacheItem)
+            self.player?.playImmediately(atRate: 1)
+            self.player?.seek(to: .zero)
         } else {
             current.loadValuesAsynchronously(forKeys: assetKeysRequiredToPlay) { [weak self] in
                 DispatchQueue.main.async {
