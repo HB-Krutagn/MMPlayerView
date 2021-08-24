@@ -19,9 +19,13 @@ class MMPlayerCache: NSObject {
             if let f = queueURL.first {
                 self.removeCache(key: f)
             }
+        } else if !cache.keys.contains(key) {
+            queueURL.append(key)
+            cache[key] = item
+        } else {
+            queueURL.append(key)
+            cache[key] = item
         }
-        queueURL.append(key)
-        cache[key] = item
     }
     
     func getItem(key: URL) -> AVPlayerItem? {
@@ -29,10 +33,12 @@ class MMPlayerCache: NSObject {
     }
     
     func removeCache(key: URL) {
-        if let idx = queueURL.firstIndex(of: key) {
-            queueURL.remove(at: idx)
+        if cache.keys.count >= cacheCount {
+            if let idx = queueURL.firstIndex(of: key) {
+                queueURL.remove(at: idx)
+            }
+            cache.removeValue(forKey: key)
         }
-        cache.removeValue(forKey: key)
     }
     
     func removeAll() {
