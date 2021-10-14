@@ -29,6 +29,9 @@ class MMPlayerCache: NSObject {
     }
     
     func getItem(key: URL) -> AVPlayerItem? {
+        if #available(iOS 15, *) {
+            return nil
+        }
         return cache[key]
     }
     
