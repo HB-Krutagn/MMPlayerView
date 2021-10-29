@@ -201,7 +201,7 @@ public class MMPlayerLayer: AVPlayerLayer {
      mmplayerLayer.fullScreenWhenLandscape = true
      ```
      */
-    public var fullScreenWhenLandscape = true
+    public var fullScreenWhenLandscape = false
     /**
      Player current orientation
      
