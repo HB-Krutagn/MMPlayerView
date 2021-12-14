@@ -443,6 +443,7 @@ extension MMPlayerLayer {
         }
         self.startLoading(isStart: true)
         if let cacheItem = self.cahce.getItem(key: current.url) , cacheItem.status == .readyToPlay {
+            currentPlayStatus = .ready
             self.player?.replaceCurrentItem(with: cacheItem)
             self.player?.playImmediately(atRate: 1)
             self.player?.seek(to: .zero)
